@@ -8,9 +8,20 @@
 import Foundation
 import ComposableArchitecture
 
-enum ListItemState: Equatable{
+enum ListItemState: Equatable, Identifiable{
     case incrementState(IncrementState)
     case DecrementState(DecrementState)
+    
+    var id:Int{
+        get{
+            switch(self){
+            case .incrementState(let state):
+                return state.id
+            case .DecrementState(let state):
+                return state.id
+            }
+        }
+    }
 }
 enum ListItemAction{
     case incrementAction(IncrementAction)
@@ -18,23 +29,12 @@ enum ListItemAction{
     
 }
 struct ListState: Equatable{
-    var list :IdentifiedArrayOf<ListItemStateType>
+    var list :IdentifiedArrayOf<ListItemState>
 }
 enum ListAction{
-    case action(id:Int, actions:ListItemTypeAction)
+    case action(id:Int, actions:ListItemAction)
 }
 
-struct ListItemStateType : Identifiable,Equatable {
-    var id : Int
-    var state : ListItemState
-    
-}
-enum ListItemTypeAction {
-    case listItemAction(ListItemAction)
-}
-//enum actions{
-//    case adderAction(IncrementAction)
-//}
 struct AppListEnvironment{}
 
 
@@ -43,20 +43,6 @@ let listItemReducer = Reducer<ListItemState, ListItemAction, AppListEnvironment>
     DecrementReducer.pullback(state: /ListItemState.DecrementState, action: /ListItemAction.decrementAction, environment: {_ in DecrementEnvironment()})
 )
 
-let listItemTypeReducer = Reducer<ListItemStateType, ListItemTypeAction, AppListEnvironment>.combine(
-    listItemReducer.pullback(state: \ListItemStateType.state, action: /ListItemTypeAction.listItemAction, environment: {_ in AppListEnvironment()})
-)
-
-let ListReducer : Reducer<ListState, ListAction,AppListEnvironment> = listItemTypeReducer.forEach(state: \ListState.list, action: /ListAction.action) { env in
+let ListReducer : Reducer<ListState, ListAction,AppListEnvironment> = listItemReducer.forEach(state: \ListState.list, action: /ListAction.action) { env in
     AppListEnvironment()
 }
-
-
-
-
-//let ListTypeReducer : Reducer<ListState, ListAction,AppListEnvironment> = listItemReducer.forEach(state: \ListState.list, action: /ListAction.action) { env in
-//    AppListEnvironment()
-//}
-//let listReducer : Reducer<AppListState, AppListActions, Void> = listItemReducer.forEach(state:/AppListState.list, action: /AppListActions.listItemAction, environment: {_ in AppListEnvironment()})
-
-//let listReducer : Reducer<AppListState, AppListActions, Void> = listItemReducer.forEach(state: /AppListState.list, action: /AppListActions.listItemAction, environment: {env in })

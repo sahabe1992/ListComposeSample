@@ -12,49 +12,24 @@ struct AppListView: View {
     
     var body: some View {
         WithViewStore(self.store) { vs in
-//            List {
                 
         
-                
+            
                 ForEachStore(
                     self.store.scope(state: \.list, action:ListAction.action(id:actions:))
                 ) { todoStore in
                     
-                    WithViewStore(todoStore){ childState in
-                        switch childState.state.state {
-                        case .incrementState(let state):
-                            Text("Incremennt")
-                        case .DecrementState(_):
-                            Text("Decrement")
+                    SwitchStore(todoStore) {
+                        CaseLet(state: /ListItemState.incrementState, action: ListItemAction.incrementAction) { incrementStore in
+                            IncrementView(store: incrementStore)
                         }
-                        
-                    }.debug()
+                        CaseLet(state: /ListItemState.DecrementState, action: ListItemAction.decrementAction) {
+                            decrementStore in
+                            DecrementView(store: decrementStore)
+                        }
+                    }
                     
-//                    SwitchStore(todoStore) {
-//                        CaseLet(state: /ListItemStateType.incrementState, action: ListItemAction.incrementAction) { loggedInStore in
-//                            IncrementView(store: loggedInStore)
-//                          }
-//                          CaseLet(state: /ListItemState.DecrementState, action: ListItemAction.decrementAction) { loggedOutStore in
-//                            DecrementView(store: loggedOutStore)
-//                          }
-//                        }
-//                }
-                
-//            ForEach(vs.state.list) { childState in
-//                switch childState {
-//                case .incrementState(let state):
-//                    IncrementView(store: store.scope(state:{_ in state}, action: /ListAction.action(id: actions:)))
-////                    IncrementView(store: Store(initialState: state, reducer: InctrementReducer, environment: IncrementEnvironment()))
-//
-//                case .DecrementState(let state):
-////                    DecrementView(store: Store(initialState: state, reducer: DecrementReducer, environment: DecrementEnvironment()))
-//                    DecrementView(store: store.scope(state: { _ in
-//                        state
-//                    }, action: {_ in ListAction.action(id: childState.id, actions: ListItemAction.decrementAction)}))
-//                }
-//            }
             }
-//        }
         
         
     }
