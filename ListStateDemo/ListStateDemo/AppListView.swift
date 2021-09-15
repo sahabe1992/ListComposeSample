@@ -21,18 +21,12 @@ struct AppListView: View {
                 ) { todoStore in
                     
                     WithViewStore(todoStore){ childState in
-
-                        if (childState.state == .incrementState){
-                            IncrementView(store: store.scope(state: {_ in childState.st}))
-                        }
-
-                        
-                        switch childState.state {
+                        switch childState.state.state {
                         case .incrementState(let state):
-                            View
-                            IncrementView(store: store.scope(state:{_ in state}, action: /ListItemTypeAction.listItemAction))
+                            Text("Incremennt")
+                        case .DecrementState(_):
+                            Text("Decrement")
                         }
-                      
                         
                     }.debug()
                     
