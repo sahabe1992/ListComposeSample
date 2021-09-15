@@ -17,6 +17,8 @@
 		8E64572E26F0C5B600CD0C63 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 8E64572D26F0C5B600CD0C63 /* ComposableArchitecture */; };
 		8E64573026F0C5E800CD0C63 /* AppListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64572F26F0C5E800CD0C63 /* AppListCore.swift */; };
 		8E64573226F0C5FC00CD0C63 /* AppListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E64573126F0C5FC00CD0C63 /* AppListView.swift */; };
+		8E7835BA26F2159E004905FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7835B926F2159E004905FC /* SceneDelegate.swift */; };
+		8E7835BC26F21669004905FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7835BB26F21669004905FC /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		8E64572A26F0C4DF00CD0C63 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		8E64572F26F0C5E800CD0C63 /* AppListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListCore.swift; sourceTree = "<group>"; };
 		8E64573126F0C5FC00CD0C63 /* AppListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppListView.swift; sourceTree = "<group>"; };
+		8E7835B926F2159E004905FC /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8E7835BB26F21669004905FC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 				8E64572526F0C4C700CD0C63 /* AddDemo */,
 				8E64573126F0C5FC00CD0C63 /* AppListView.swift */,
 				8E64572F26F0C5E800CD0C63 /* AppListCore.swift */,
+				8E7835B926F2159E004905FC /* SceneDelegate.swift */,
 				8E64571A26F0C4B000CD0C63 /* Assets.xcassets */,
 				8E64571826F0C4AE00CD0C63 /* ContentView.swift */,
 				8E64571626F0C4AE00CD0C63 /* ListStateDemoApp.swift */,
@@ -88,6 +93,7 @@
 		8E64572526F0C4C700CD0C63 /* AddDemo */ = {
 			isa = PBXGroup;
 			children = (
+				8E7835BB26F21669004905FC /* AppDelegate.swift */,
 				8E64572626F0C4C700CD0C63 /* IncrementView.swift */,
 				8E64572726F0C4C700CD0C63 /* DecrementView.swift */,
 			);
@@ -172,10 +178,12 @@
 				8E64572926F0C4C700CD0C63 /* DecrementView.swift in Sources */,
 				8E64573226F0C5FC00CD0C63 /* AppListView.swift in Sources */,
 				8E64573026F0C5E800CD0C63 /* AppListCore.swift in Sources */,
+				8E7835BC26F21669004905FC /* AppDelegate.swift in Sources */,
 				8E64572826F0C4C700CD0C63 /* IncrementView.swift in Sources */,
 				8E64571926F0C4AE00CD0C63 /* ContentView.swift in Sources */,
 				8E64572B26F0C4DF00CD0C63 /* MainView.swift in Sources */,
 				8E64571726F0C4AE00CD0C63 /* ListStateDemoApp.swift in Sources */,
+				8E7835BA26F2159E004905FC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,7 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -288,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -307,7 +315,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ListStateDemo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ListStateDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -328,7 +336,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ListStateDemo/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ListStateDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

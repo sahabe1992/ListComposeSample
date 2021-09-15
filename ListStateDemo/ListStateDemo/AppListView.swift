@@ -8,12 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 struct AppListView: View {
-    let store: Store<ListState, ListAction>
+    var store: Store<ListState, ListAction>
+    init(store:Store<ListState, ListAction>) {
+        self.store = store
+    }
     
     var body: some View {
         WithViewStore(self.store) { vs in
-                
-        
+            NavigationView{
+            List{
             
                 ForEachStore(
                     self.store.scope(state: \.list, action:ListAction.action(id:actions:))
@@ -28,9 +31,12 @@ struct AppListView: View {
                             DecrementView(store: decrementStore)
                         }
                     }
+                
                     
             }
-        
+            }
+                
+        }
         
     }
 }

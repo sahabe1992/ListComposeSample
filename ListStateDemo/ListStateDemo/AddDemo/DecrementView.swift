@@ -18,7 +18,13 @@ struct DecrementView: View {
                 Text("Decremented value \(viewStore.state.count)")
                 Button("Decrement") {
                     viewStore.send(DecrementAction.decrementCount)
-                }.padding()
+                }.padding().buttonStyle(BorderlessButtonStyle())
+                Button("Reset") {
+                    viewStore.send(DecrementAction.reset)
+                }.padding().buttonStyle(BorderlessButtonStyle())
+                NavigationLink(destination: Text("Second View"), isActive: .constant(false)) { EmptyView() }
+                Button("Tap to show detail") {
+                }.buttonStyle(BorderlessButtonStyle())
             }
         }
     }
@@ -45,6 +51,7 @@ struct DecrementState: Equatable, Identifiable {
 
 enum DecrementAction {
     case decrementCount
+    case reset
 }
 
 struct DecrementEnvironment {
@@ -55,5 +62,8 @@ let DecrementReducer = Reducer<DecrementState, DecrementAction,DecrementEnvironm
         case .decrementCount:
             state.count = state.count - 1
             return .none
+    case .reset:
+        state.count = 10
+        return .none
     }
 }
