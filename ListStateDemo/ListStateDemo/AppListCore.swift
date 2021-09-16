@@ -27,12 +27,14 @@ enum ListItemAction{
     case incrementAction(IncrementAction)
     case decrementAction(DecrementAction)
     
+    
 }
 struct ListState: Equatable{
     var list :IdentifiedArrayOf<ListItemState>
 }
 enum ListAction{
     case action(id:Int, actions:ListItemAction)
+    case onAppear
 }
 
 struct AppListEnvironment{}
@@ -42,7 +44,21 @@ let listItemReducer = Reducer<ListItemState, ListItemAction, AppListEnvironment>
     InctrementReducer.pullback(state: /ListItemState.incrementState, action: /ListItemAction.incrementAction, environment: {_ in IncrementEnvironment()}),
     DecrementReducer.pullback(state: /ListItemState.DecrementState, action: /ListItemAction.decrementAction, environment: {_ in DecrementEnvironment()})
 )
+let ListReducer = Reducer<ListState, ListAction, AppListEnvironment>.combine(
+    listItemReducer.forEach(
+        state: \ListState.list,
+        action: /ListAction.action,
+    environment: { _ in AppListEnvironment() }
+  ),
+  Reducer { state, action, environment in
+    switch action {
+    case .onAppear:
+        print("Appear")
+      return .none
 
-let ListReducer : Reducer<ListState, ListAction,AppListEnvironment> = listItemReducer.forEach(state: \ListState.list, action: /ListAction.action) { env in
-    AppListEnvironment()
-}
+
+    case .action(id: let id, actions: let actions):
+        return .none
+    }
+  }
+)

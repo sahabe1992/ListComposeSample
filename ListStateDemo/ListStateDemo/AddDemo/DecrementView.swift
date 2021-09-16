@@ -67,3 +67,28 @@ let DecrementReducer = Reducer<DecrementState, DecrementAction,DecrementEnvironm
         return .none
     }
 }
+struct NoButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+    }
+}
+struct ListWithoutSepatorsAndMargins<Content: View>: View {
+        let content: () -> Content
+    
+        var body: some View {
+            if #available(iOS 14.0, *) {
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        self.content()
+                    }
+                    .buttonStyle(NoButtonStyle())
+                }
+            } else {
+                List {
+                    self.content()
+                }
+                .listStyle(PlainListStyle())
+                .buttonStyle(NoButtonStyle())
+            }
+        }
+    }

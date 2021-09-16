@@ -34,7 +34,9 @@ struct AppListView: View {
                 
                     
             }
-            }
+            }.onAppear(perform: {
+                vs.send(.onAppear)
+            })
                 
         }
         
